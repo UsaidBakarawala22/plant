@@ -7,9 +7,7 @@ const {
     PlantShape,
     Plant,
 } = require('../../../models');
-// const PlantColor = require('../../../models/lib/PlantColor');
-// const PlantShape = require('../../../models/lib/PlantShape');
-// const PlantFruit = require('../../../models/lib/PlantFruit');
+
 const controllers = {};
 
 // controllers.addType = async (req, res) => {
@@ -237,14 +235,14 @@ controllers.listQuery1 = async (req, res) => {
             const data1 = await PlantLook.find({
                 oReferencePlantType: treeID,
             });
-            console.log(data1);
+            // console.log(data1);
             return res.reply(messages.success(), data1);
         }
         if (eType == 'Shrub') {
             const dataShrub = await PlantLook.find({
                 oReferencePlantType: treeID,
             });
-            console.log(dataShrub);
+            // console.log(dataShrub);
             return res.reply(messages.success(), dataShrub);
         }
         if (eType == 'Perennial') {
@@ -252,7 +250,7 @@ controllers.listQuery1 = async (req, res) => {
             const dataperennial = await PlantHeight.find({
                 oReferencePlantType: treeID,
             });
-            console.log(dataperennial);
+            // console.log(dataperennial);
             return res.reply(messages.success(), dataperennial);
         }
     } catch (error) {
@@ -271,7 +269,7 @@ controllers.listQuery2 = async (req, res) => {
             eLook,
             oReferencePlantType: existingType._id,
         });
-        console.log(existingLook);
+        // console.log(existingLook);
         // const lookId = existingLook._id;
         if (eType == 'Tree' && eLook == 'evergreen') {
             const heightdata = await PlantHeight.find({
@@ -295,14 +293,14 @@ controllers.listQuery2 = async (req, res) => {
         }
 
         if (eType == 'Perennial') {
-            console.log('in perennial');
+            // console.log('in perennial');
             const heightPerennialdata = await PlantHeight.findOne({
                 eHeight,
                 oReferencePlantType: existingType._id,
             });
-            console.log('height', heightPerennialdata);
+            // console.log('height', heightPerennialdata);
             // console.log(existingType._id);
-            console.log(heightPerennialdata._id);
+            // console.log(heightPerennialdata._id);
             const colorPerennialData = await PlantColor.find({
                 // oReferencePlantType: existingType._id,
                 oReferencePlantHeight: heightPerennialdata._id,
@@ -361,14 +359,14 @@ controllers.listQuery3 = async (req, res) => {
                 oReferencePlantLook: existingLook._id,
             });
             if (eLook == 'deciduous') {
-                console.log(shrubHeight);
+                // console.log(shrubHeight);
                 const shrubShape = await PlantShape.find({
                     oReferencePlantHeight: shrubHeight._id,
                 });
                 log.green(shrubShape);
                 return res.reply(messages.success(), shrubShape);
             } else {
-                console.log(shrubHeight);
+                // console.log(shrubHeight);
 
                 const fruitShrub = await PlantFruits.find({
                     oReferencePlantType: existingType._id,
@@ -457,7 +455,7 @@ controllers.listQuery4 = async (req, res) => {
                 eHeight,
                 oReferencePlantLook: existingLook._id,
             });
-            console.log(shrubheight);
+            // console.log(shrubheight);
             if (eLook == 'deciduous') {
                 const shrubshape = await PlantShape.findOne({
                     eShape,
@@ -474,7 +472,8 @@ controllers.listQuery4 = async (req, res) => {
                     isFruit,
                     oReferencePlantHeight: shrubheight._id,
                 });
-                console.log(fruitshrub);
+                // console.log(fruitshrub);
+                // eslint-disable-next-line camelcase
                 const shape_shrub = await PlantShape.find({
                     oReferencePlantfruit: fruitshrub._id,
                 });
