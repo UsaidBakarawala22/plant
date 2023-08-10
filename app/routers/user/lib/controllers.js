@@ -225,15 +225,14 @@ const controllers = {};
 
 controllers.listQuery1 = async (req, res) => {
     try {
-        const { tree, shrub, perennial } = req.body;
-        log.yellow(tree);
+        const { eType } = req.body;
 
         const existingTree = await PlantType.findOne({
-            eType: tree || shrub || perennial,
+            eType,
         });
         // log.yellow(existingTree);
         const treeID = existingTree._id;
-        if (tree) {
+        if (eType == 'Tree') {
             log.yellow(treeID);
             const data1 = await PlantLook.find({
                 oReferencePlantType: treeID,
@@ -241,14 +240,14 @@ controllers.listQuery1 = async (req, res) => {
             console.log(data1);
             return res.reply(messages.success(), data1);
         }
-        if (shrub) {
+        if (eType == 'Shrub') {
             const dataShrub = await PlantLook.find({
                 oReferencePlantType: treeID,
             });
             console.log(dataShrub);
             return res.reply(messages.success(), dataShrub);
         }
-        if (perennial) {
+        if (eType == 'Perennial') {
             log.cyan(treeID);
             const dataperennial = await PlantHeight.find({
                 oReferencePlantType: treeID,
@@ -429,6 +428,8 @@ controllers.listQuery4 = async (req, res) => {
                     eLook: eLook,
                     eHeight: eHeight,
                     eShape: eShape,
+                    eColor: eColor || null,
+                    isFruit: isFruit || null,
                 });
                 log.cyan(addData);
                 await addData.save();
@@ -528,31 +529,46 @@ controllers.listQuery5 = async (req, res) => {
                 eHeight: eHeight,
                 isFruit: isFruit,
                 eShape: eShape,
+                eColor: eColor || null,
             });
             log.cyan(addData);
             await addData.save();
             return res.reply(messages.success(), addData);
         }
         if (eType == 'Shrub') {
-            if (eColor == 'Red') {
-                const heightshrub = await PlantHeight.findOne({
-                    eHeight,
-                    oReferencePlantLook: existingLook._id,
-                });
-                log.yellow(heightshrub);
-                const shrubShape = await PlantShape.findOne({
-                    eShape,
-                    oReferencePlantHeight: heightshrub._id,
-                });
-                log.green(shrubShape);
-                const subColor = await PlantColor.find({
-                    eColor,
-                    oReferencePlantShape: shrubShape._id,
-                    oReferencePlantHeight: heightshrub._id,
-                });
+            if (eLook == 'deciduous') {
+                if (eColor == 'Red') {
+                    const heightshrub = await PlantHeight.findOne({
+                        eHeight,
+                        oReferencePlantLook: existingLook._id,
+                    });
+                    log.yellow(heightshrub);
+                    const shrubShape = await PlantShape.findOne({
+                        eShape,
+                        oReferencePlantHeight: heightshrub._id,
+                    });
+                    log.green(shrubShape);
+                    const subColor = await PlantColor.find({
+                        eColor,
+                        oReferencePlantShape: shrubShape._id,
+                        oReferencePlantHeight: heightshrub._id,
+                    });
 
-                log.cyan(subColor);
-                return res.reply(messages.success(), subColor);
+                    log.cyan(subColor);
+                    return res.reply(messages.success(), subColor);
+                } else {
+                    const addData = new Plant({
+                        eType: eType,
+                        eLook: eLook,
+                        eHeight: eHeight,
+                        isFruit: isFruit,
+                        eShape: eShape,
+                        eColor: eColor,
+                    });
+                    log.green(addData);
+                    await addData.save();
+                    return res.reply(messages.success(), addData);
+                }
             } else {
                 const addData = new Plant({
                     eType: eType,
@@ -560,7 +576,7 @@ controllers.listQuery5 = async (req, res) => {
                     eHeight: eHeight,
                     isFruit: isFruit,
                     eShape: eShape,
-                    eColor: eColor,
+                    eColor: eColor || null,
                 });
                 log.green(addData);
                 await addData.save();
