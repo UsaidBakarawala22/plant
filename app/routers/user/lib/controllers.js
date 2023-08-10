@@ -18,18 +18,18 @@ const controllers = {};
 //             eType: req.body.eType,
 //         });
 
-//         log.green(addType);
+//         //log.green(addType);
 //         await addType.save();
 //         return res.reply(messages.successfully('Tree type added'), addType);
 //     } catch (error) {
-//         log.red('error', error);
+//         //log.red('error', error);
 //     }
 // };
 
 // controllers.addLook = async (req, res) => {
 //     try {
 //         const { eType, eLook } = req.body;
-//         log.green({ eType, eLook });
+//         //log.green({ eType, eLook });
 
 //         const existingType = await PlantType.findOne({
 //             eType,
@@ -51,39 +51,39 @@ const controllers = {};
 //     try {
 //         // console.log(req.body);
 //         const { eType, eLook, eHeight, isFruit } = req.body;
-//         // log.green(eType, eLook, eHeight, isFruit);
+//         // //log.green(eType, eLook, eHeight, isFruit);
 
 //         const existingType = await PlantType.findOne({ eType });
-//         log.green(existingType);
+//         //log.green(existingType);
 //         const existingLook = await PlantLook.findOne({
 //             eLook,
 //             oReferencePlantType: existingType._id,
 //         });
-//         log.yellow(existingLook);
+//         //log.yellow(existingLook);
 
 //         const existingHeight = await PlantHeight.findOne({
 //             eHeight,
 //             oReferencePlantLook: existingLook._id,
 //         });
-//         log.cyan(existingHeight);
+//         //log.cyan(existingHeight);
 //         const isfruit = new PlantFruits({
 //             oReferencePlantType: existingType._id,
 //             oReferencePlantLook: existingLook._id,
 //             oReferencePlantHeight: !existingHeight ? null : existingHeight._id,
 //             isFruit: isFruit,
 //         });
-//         log.magenta(isfruit);
+//         //log.magenta(isfruit);
 //         await isfruit.save();
 //         return res.reply(messages.successfully('added'));
 //     } catch (error) {
-//         log.red('error', error);
+//         //log.red('error', error);
 //     }
 // };
 
 // controllers.addHeight = async (req, res) => {
 //     try {
 //         const { eHeight, eType, eLook, isFruit } = req.body;
-//         log.green({ eHeight, eType, eLook, isFruit });
+//         //log.green({ eHeight, eType, eLook, isFruit });
 
 //         const existingType = await PlantType.findOne({ eType });
 //         console.log(existingType);
@@ -91,7 +91,7 @@ const controllers = {};
 //             eLook,
 //             oReferencePlantType: existingType._id,
 //         });
-//         log.yellow(existingLook);
+//         //log.yellow(existingLook);
 //         const existingFruit = await PlantFruits.findOne({ isFruit });
 
 //         const addHeight = new PlantHeight({
@@ -100,7 +100,7 @@ const controllers = {};
 //             oReferencePlantLook: !existingLook ? null : existingLook._id,
 //             oReferencePlantfruit: !existingFruit ? null : existingFruit._id,
 //         });
-//         log.cyan(addHeight);
+//         //log.cyan(addHeight);
 //         await addHeight.save();
 
 //         return res.reply(
@@ -108,14 +108,14 @@ const controllers = {};
 //             addHeight
 //         );
 //     } catch (error) {
-//         log.red('error', error);
+//         //log.red('error', error);
 //     }
 // };
 
 // controllers.addShape = async (req, res) => {
 //     try {
 //         const { eShape, eType, eLook, eHeight, fruit } = req.body;
-//         log.yellow({ eShape, eType, eLook, eHeight, fruit });
+//         //log.yellow({ eShape, eType, eLook, eHeight, fruit });
 
 //         const existingType = await PlantType.findOne({ eType });
 //         const existingLook = await PlantLook.findOne({
@@ -158,7 +158,7 @@ const controllers = {};
 //             oReferencePlantHeight: existingHeight._id,
 //             oReferencePlantfruit: !existingfruit ? null : existingfruit._id,
 //         });
-//         log.green(addshape);
+//         //log.green(addshape);
 //         await addshape.save();
 //         return res.reply(messages.successfully('Shape added'), addshape);
 //     } catch (error) {
@@ -169,7 +169,7 @@ const controllers = {};
 // controllers.addColor = async (req, res) => {
 //     try {
 //         const { eColor, eType, eLook, eHeight, eShape, aSubColor } = req.body;
-//         // log.yellow({ eColor, eType, eLook, eHeight, eShape });
+//         // //log.yellow({ eColor, eType, eLook, eHeight, eShape });
 
 //         const existingType = await PlantType.findOne({ eType });
 
@@ -213,11 +213,11 @@ const controllers = {};
 //             oReferencePlantLook: !existingLook ? null : existingLook._id,
 //             oReferencePlantShape: !existingShape ? null : existingShape._id,
 //         });
-//         log.green(color);
+//         //log.green(color);
 //         await color.save();
 //         return res.reply(messages.successfully('color added'), color);
 //     } catch (error) {
-//         log.red('error', error);
+//         //log.red('error', error);
 //     }
 // };
 
@@ -228,10 +228,10 @@ controllers.listQuery1 = async (req, res) => {
         const existingTree = await PlantType.findOne({
             eType,
         });
-        // log.yellow(existingTree);
+        // //log.yellow(existingTree);
         const treeID = existingTree._id;
         if (eType == 'Tree') {
-            log.yellow(treeID);
+            //log.yellow(treeID);
             const data1 = await PlantLook.find({
                 oReferencePlantType: treeID,
             });
@@ -246,7 +246,7 @@ controllers.listQuery1 = async (req, res) => {
             return res.reply(messages.success(), dataShrub);
         }
         if (eType == 'Perennial') {
-            log.cyan(treeID);
+            //log.cyan(treeID);
             const dataperennial = await PlantHeight.find({
                 oReferencePlantType: treeID,
             });
@@ -255,14 +255,15 @@ controllers.listQuery1 = async (req, res) => {
         }
     } catch (error) {
         // console.log('Error', error);
-        log.red('error', error);
+        //log.red('error', error);
+        return _.catchServerError('error', error, res);
     }
 };
 
 controllers.listQuery2 = async (req, res) => {
     try {
         const { eLook, eHeight, eType } = req.body;
-        log.green(eLook);
+        //log.green(eLook);
         const existingType = await PlantType.findOne({ eType });
         // const typeId = existingType._id;
         const existingLook = await PlantLook.findOne({
@@ -275,20 +276,20 @@ controllers.listQuery2 = async (req, res) => {
             const heightdata = await PlantHeight.find({
                 oReferencePlantLook: existingLook._id,
             });
-            log.cyan(heightdata);
+            //log.cyan(heightdata);
             return res.reply(messages.success(), heightdata);
         } else if (eType == 'Tree' && eLook == 'deciduous') {
             const isFruitdata = await PlantFruits.find({
                 oReferencePlantLook: existingLook._id,
             });
-            log.cyan(isFruitdata);
+            //log.cyan(isFruitdata);
             return res.reply(messages.success(), isFruitdata);
         }
         if (eType == 'Shrub') {
             const heightShrubdata = await PlantHeight.find({
                 oReferencePlantLook: existingLook._id,
             });
-            log.cyan(heightShrubdata);
+            //log.cyan(heightShrubdata);
             return res.reply(messages.success(), heightShrubdata);
         }
 
@@ -305,11 +306,12 @@ controllers.listQuery2 = async (req, res) => {
                 // oReferencePlantType: existingType._id,
                 oReferencePlantHeight: heightPerennialdata._id,
             });
-            log.cyan(colorPerennialData);
+            //log.cyan(colorPerennialData);
             return res.reply(messages.success(), colorPerennialData);
         }
     } catch (error) {
-        log.red('error', error);
+        //log.red('error', error);
+        return _.catchServerError('error', error, res);
     }
 };
 
@@ -332,7 +334,7 @@ controllers.listQuery3 = async (req, res) => {
                 const shapeTreeData = await PlantShape.find({
                     oReferencePlantHeight: heightdata._id,
                 });
-                // log.green(shapeTreeData);
+                // //log.green(shapeTreeData);
                 return res.reply(messages.success(), shapeTreeData);
             } else {
                 // console.log('*******');
@@ -347,7 +349,7 @@ controllers.listQuery3 = async (req, res) => {
                     oReferencePlantLook: existingLook._id,
                     oReferencePlantfruit: fruitTree._id,
                 });
-                log.green(heighttree);
+                //log.green(heighttree);
                 return res.reply(messages.success(), heighttree);
             }
         }
@@ -363,7 +365,7 @@ controllers.listQuery3 = async (req, res) => {
                 const shrubShape = await PlantShape.find({
                     oReferencePlantHeight: shrubHeight._id,
                 });
-                log.green(shrubShape);
+                //log.green(shrubShape);
                 return res.reply(messages.success(), shrubShape);
             } else {
                 // console.log(shrubHeight);
@@ -372,7 +374,7 @@ controllers.listQuery3 = async (req, res) => {
                     oReferencePlantType: existingType._id,
                     oReferencePlantHeight: shrubHeight._id,
                 });
-                log.green(fruitShrub);
+                //log.green(fruitShrub);
                 return res.reply(messages.success(), fruitShrub);
             }
         }
@@ -388,7 +390,7 @@ controllers.listQuery3 = async (req, res) => {
                     oReferencePlantType: existingType._id,
                     oReferencePlantHeight: perennialHeight._id,
                 });
-                log.green(colorperennial);
+                //log.green(colorperennial);
                 return res.reply(messages.success(), colorperennial);
             } else {
                 const addData = new Plant({
@@ -399,13 +401,14 @@ controllers.listQuery3 = async (req, res) => {
                     eShape: eShape || null,
                     eColor: eColor,
                 });
-                log.cyan(addData);
+                //log.cyan(addData);
                 await addData.save();
                 return res.reply(messages.success(), addData);
             }
         }
     } catch (error) {
-        log.red('error', error);
+        //log.red('error', error);
+        return _.catchServerError('error', error, res);
     }
 };
 
@@ -429,7 +432,7 @@ controllers.listQuery4 = async (req, res) => {
                     eColor: eColor || null,
                     isFruit: isFruit || null,
                 });
-                log.cyan(addData);
+                //log.cyan(addData);
                 await addData.save();
                 return res.reply(messages.success(), addData);
             }
@@ -437,7 +440,7 @@ controllers.listQuery4 = async (req, res) => {
                 isFruit,
                 oReferencePlantType: existingType._id,
             });
-            // log.green(fruitTree);
+            // //log.green(fruitTree);
             const treeheight = await PlantHeight.findOne({
                 eHeight,
                 oReferencePlantLook: existingLook._id,
@@ -447,7 +450,7 @@ controllers.listQuery4 = async (req, res) => {
             const shapetree = await PlantShape.find({
                 oReferencePlantHeight: treeheight._id,
             });
-            // log.green(shapetree);
+            // //log.green(shapetree);
             return res.reply(messages.success(), shapetree);
         }
         if (eType == 'Shrub') {
@@ -461,11 +464,11 @@ controllers.listQuery4 = async (req, res) => {
                     eShape,
                     oReferencePlantHeight: shrubheight._id,
                 });
-                log.green(shrubshape);
+                //log.green(shrubshape);
                 const shrubcolor = await PlantColor.find({
                     oReferencePlantShape: shrubshape._id,
                 });
-                log.cyan(shrubcolor);
+                //log.cyan(shrubcolor);
                 return res.reply(messages.success(), shrubcolor);
             } else {
                 const fruitshrub = await PlantFruits.findOne({
@@ -477,7 +480,7 @@ controllers.listQuery4 = async (req, res) => {
                 const shape_shrub = await PlantShape.find({
                     oReferencePlantfruit: fruitshrub._id,
                 });
-                log.cyan(shape_shrub);
+                //log.cyan(shape_shrub);
                 return res.reply(messages.success(), shape_shrub);
             }
         }
@@ -492,7 +495,7 @@ controllers.listQuery4 = async (req, res) => {
                 oReferencePlantType: existingType._id,
                 oReferencePlantHeight: perennialHeight._id,
             });
-            log.green(colorperennial);
+            //log.green(colorperennial);
 
             const addData = new Plant({
                 eType: eType,
@@ -503,12 +506,13 @@ controllers.listQuery4 = async (req, res) => {
                 eColor: eColor,
                 aSubcolor: aSubColor,
             });
-            log.cyan(addData);
+            //log.cyan(addData);
             await addData.save();
             return res.reply(messages.success(), addData);
         }
     } catch (error) {
-        log.red('error', error);
+        //log.red('error', error);
+        return _.catchServerError('error', error, res);
     }
 };
 
@@ -530,7 +534,7 @@ controllers.listQuery5 = async (req, res) => {
                 eShape: eShape,
                 eColor: eColor || null,
             });
-            log.cyan(addData);
+            //log.cyan(addData);
             await addData.save();
             return res.reply(messages.success(), addData);
         }
@@ -541,19 +545,19 @@ controllers.listQuery5 = async (req, res) => {
                         eHeight,
                         oReferencePlantLook: existingLook._id,
                     });
-                    log.yellow(heightshrub);
+                    //log.yellow(heightshrub);
                     const shrubShape = await PlantShape.findOne({
                         eShape,
                         oReferencePlantHeight: heightshrub._id,
                     });
-                    log.green(shrubShape);
+                    //log.green(shrubShape);
                     const subColor = await PlantColor.find({
                         eColor,
                         oReferencePlantShape: shrubShape._id,
                         oReferencePlantHeight: heightshrub._id,
                     });
 
-                    log.cyan(subColor);
+                    //log.cyan(subColor);
                     return res.reply(messages.success(), subColor);
                 } else {
                     const addData = new Plant({
@@ -564,7 +568,7 @@ controllers.listQuery5 = async (req, res) => {
                         eShape: eShape,
                         eColor: eColor,
                     });
-                    log.green(addData);
+                    //log.green(addData);
                     await addData.save();
                     return res.reply(messages.success(), addData);
                 }
@@ -577,42 +581,48 @@ controllers.listQuery5 = async (req, res) => {
                     eShape: eShape,
                     eColor: eColor || null,
                 });
-                log.green(addData);
+                //log.green(addData);
                 await addData.save();
                 return res.reply(messages.success(), addData);
             }
         }
     } catch (error) {
-        log.red('error', error);
+        //log.red('error', error);
+        return _.catchServerError('error', error, res);
     }
 };
 
 controllers.listQuery6 = async (req, res) => {
-    const { eColor, eHeight, eType, eLook, isFruit, aSubcolor, eShape } =
-        req.body;
-    const existingType = await PlantType.findOne({ eType });
-    const perennialHeight = await PlantHeight.findOne({
-        eHeight,
-        oReferencePlantType: existingType._id,
-    });
-    const colorperennial = await PlantColor.find({
-        eColor,
-        oReferencePlantType: existingType._id,
-        oReferencePlantHeight: perennialHeight._id,
-    });
-    log.green(colorperennial);
+    try {
+        const { eColor, eHeight, eType, eLook, isFruit, aSubcolor, eShape } =
+            req.body;
+        const existingType = await PlantType.findOne({ eType });
+        const perennialHeight = await PlantHeight.findOne({
+            eHeight,
+            oReferencePlantType: existingType._id,
+        });
+        const colorperennial = await PlantColor.find({
+            eColor,
+            oReferencePlantType: existingType._id,
+            oReferencePlantHeight: perennialHeight._id,
+        });
+        //log.green(colorperennial);
 
-    const addData = new Plant({
-        eType: eType,
-        eLook: eLook || null,
-        eHeight: eHeight,
-        isFruit: isFruit || null,
-        eShape: eShape || null,
-        eColor: eColor,
-        aSubcolor: aSubcolor,
-    });
-    log.cyan(addData);
-    await addData.save();
-    return res.reply(messages.success(), addData);
+        const addData = new Plant({
+            eType: eType,
+            eLook: eLook || null,
+            eHeight: eHeight,
+            isFruit: isFruit || null,
+            eShape: eShape || null,
+            eColor: eColor,
+            aSubcolor: aSubcolor,
+        });
+        //log.cyan(addData);
+        await addData.save();
+        return res.reply(messages.success(), addData);
+    } catch (error) {
+        log.red('error', error);
+        return _.catchServerError('error', error, res);
+    }
 };
 module.exports = controllers;
