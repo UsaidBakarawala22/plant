@@ -1,0 +1,45 @@
+{
+    "name": "node-boilerplate",
+    "version": "2.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "dev": "nodemon --inspect index.js",
+        "debug": "node --inspect index.js",
+        "start": "node index.js",
+        "prepare": "npx husky install"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "eslint .",
+            "pre-push": "eslint ."
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "aws-sdk": "^2.1329.0",
+        "axios": "^1.1.3",
+        "body-parser": "^1.19.0",
+        "compression": "^1.7.4",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "ejs": "^3.1.5",
+        "express": "^4.17.1",
+        "helmet": "^4.2.0",
+        "jimp": "^0.22.7",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.10.15",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.5-lts.1",
+        "shortid": "^2.2.16"
+    },
+    "devDependencies": {
+        "eslint": "^8.30.0",
+        "husky": "^8.0.2",
+        "prettier": "^2.8.1"
+    }
+}
