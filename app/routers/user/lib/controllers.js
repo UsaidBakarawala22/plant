@@ -221,6 +221,16 @@ const controllers = {};
 //     }
 // };
 
+controllers.listQuery = async (req, res) => {
+    try {
+        const plantType = await PlantType.find();
+        console.log(plantType);
+        return res.reply(messages.success(), plantType);
+    } catch (error) {
+        return _.catchServerError('error', error, res);
+    }
+};
+
 controllers.listQuery1 = async (req, res) => {
     try {
         const { eType } = req.body;
@@ -486,15 +496,15 @@ controllers.listQuery4 = async (req, res) => {
         }
 
         if (eType == 'Perennial') {
-            const perennialHeight = await PlantHeight.findOne({
-                eHeight,
-                oReferencePlantType: existingType._id,
-            });
-            const colorperennial = await PlantColor.find({
-                eColor,
-                oReferencePlantType: existingType._id,
-                oReferencePlantHeight: perennialHeight._id,
-            });
+            // const perennialHeight = await PlantHeight.findOne({
+            //     eHeight,
+            //     oReferencePlantType: existingType._id,
+            // });
+            // const colorperennial = await PlantColor.find({
+            //     eColor,
+            //     oReferencePlantType: existingType._id,
+            //     oReferencePlantHeight: perennialHeight._id,
+            // });
             //log.green(colorperennial);
 
             const addData = new Plant({
@@ -596,16 +606,16 @@ controllers.listQuery6 = async (req, res) => {
     try {
         const { eColor, eHeight, eType, eLook, isFruit, aSubcolor, eShape } =
             req.body;
-        const existingType = await PlantType.findOne({ eType });
-        const perennialHeight = await PlantHeight.findOne({
-            eHeight,
-            oReferencePlantType: existingType._id,
-        });
-        const colorperennial = await PlantColor.find({
-            eColor,
-            oReferencePlantType: existingType._id,
-            oReferencePlantHeight: perennialHeight._id,
-        });
+        // const existingType = await PlantType.findOne({ eType });
+        // const perennialHeight = await PlantHeight.findOne({
+        //     eHeight,
+        //     oReferencePlantType: existingType._id,
+        // });
+        // const colorperennial = await PlantColor.find({
+        //     eColor,
+        //     oReferencePlantType: existingType._id,
+        //     oReferencePlantHeight: perennialHeight._id,
+        // });
         //log.green(colorperennial);
 
         const addData = new Plant({
@@ -617,7 +627,7 @@ controllers.listQuery6 = async (req, res) => {
             eColor: eColor,
             aSubcolor: aSubcolor,
         });
-        //log.cyan(addData);
+        // log.cyan(addData);
         await addData.save();
         return res.reply(messages.success(), addData);
     } catch (error) {

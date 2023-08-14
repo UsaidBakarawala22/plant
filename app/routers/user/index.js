@@ -2,7 +2,7 @@ const router = require('express').Router();
 const controllers = require('./lib/controllers');
 
 // router.post('/connect', controllers.connect);
-
+router.get('/list', controllers.listQuery);
 router.post('/list1', controllers.listQuery1);
 router.post('/list2', controllers.listQuery2);
 router.post('/list3', controllers.listQuery3);
